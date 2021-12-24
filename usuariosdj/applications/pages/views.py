@@ -5,7 +5,10 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 
+from applications.pages.forms import PageForm
+
 from .models import Page
+from .forms import PageForm
 
 # Create your views here.
 class PagesListView(ListView):
@@ -23,14 +26,16 @@ class PagesDetailView(DetailView):
 class PageCreateView(CreateView):
     model = Page
     template_name = 'pages/add.html'
-    fields = ['title', 'content', 'order']
+    #fields = ['title', 'content', 'order']
+    form_class =PageForm
     success_url = reverse_lazy('pages_app:pages')
 
 
 class PageUpdateView(UpdateView):
     model = Page
     template_name = 'pages/update.html'
-    fields = ['title', 'content', 'order']
+   # fields = ['title', 'content', 'order']
+    form_class =PageForm
     success_url = reverse_lazy('pages_app:pages')
     
 
